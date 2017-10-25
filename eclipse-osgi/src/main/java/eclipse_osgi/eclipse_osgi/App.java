@@ -20,6 +20,8 @@ public class App
     public static void main( String[] args )throws Exception
     {
     	//org.osgi.framework.Constants  bundle Manifest 清单文件的配置属性
+    	//EquinoxFactory
+    	//EquinoxLauncher
     	ServiceLoader<FrameworkFactory> serviceLoader   = ServiceLoader.load(FrameworkFactory.class);
     	FrameworkFactory frameworkFactory = serviceLoader.iterator().next();
     	Map<String,String> configuration = new HashMap<String, String>();
@@ -38,13 +40,22 @@ public class App
     	//configuration.put("org.osgi.framework.bootdelegation", "")
     	//org.osgi.framework.system.packages
     	Framework  framework = frameworkFactory.newFramework(configuration);
+    	//org.eclipse.osgi.framework.internal.core.EquinoxLauncher.internalInit()
     	framework.start();
-    	File file = new File("D:\\alipay\\cloudengine-4.1.2.0\\lib\\com.springsource.slf4j.api-1.6.1.jar");
-    	Bundle bundle = framework.getBundleContext().installBundle(file.getAbsoluteFile().toURI().toString());
-    	bundle.start();
-    	String fragment = (String)bundle.getHeaders().get("Fragment-Host");
+    	//File file = new File("D:\\alipay\\cloudengine-4.1.2.0\\lib\\com.springsource.slf4j.api-1.6.1.jar");
+    	//Bundle bundle = framework.getBundleContext().installBundle(file.getAbsoluteFile().toURI().toString());
+    	//bundle.start();
+    	//Constants 
+    	// state Bundle
+    	//  install                start()          stop()
+    	// INSTALLED --RESOLVED--STARTING--ACTIVE--STOPPING
+    	/*String fragment = (String)bundle.getHeaders().get("Fragment-Host");
         if ((fragment == null) || (fragment.equals("")))
-        	bundle.start();
+        	bundle.start();*/
+        
+        
+        // "osgi.framework"; 
+    	// "osgi.install.area"; 
     	
     }
 }
