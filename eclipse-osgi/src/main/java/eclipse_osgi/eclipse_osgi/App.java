@@ -1,13 +1,11 @@
 package eclipse_osgi.eclipse_osgi;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
 
 import org.eclipse.osgi.framework.internal.core.ConsoleManager;
 import org.eclipse.osgi.framework.internal.core.Constants;
-import org.osgi.framework.Bundle;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
 
@@ -26,7 +24,7 @@ public class App
     	FrameworkFactory frameworkFactory = serviceLoader.iterator().next();
     	Map<String,String> configuration = new HashMap<String, String>();
     	//console
-    	configuration.put(ConsoleManager.PROP_CONSOLE, "localhost:8768");
+    	configuration.put(ConsoleManager.PROP_CONSOLE, "");
     	configuration.put(ConsoleManager.PROP_CONSOLE_ENABLED, "true");
     	//Profile
     	configuration.put("osgi.profile.startup", "true");

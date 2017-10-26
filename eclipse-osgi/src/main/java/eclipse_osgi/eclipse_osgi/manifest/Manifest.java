@@ -16,6 +16,7 @@ public class Manifest {
 		//Import-Package 
 		//Export-Package
 	}
-	//
+	//service   ComponentConstants
+	//Service-Component  xml
 
 }
