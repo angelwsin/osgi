@@ -13,7 +13,7 @@
 	</component> -->
 	
 	<component  name="userService">
-	  <implementation calss="eclipse_osgi.eclipse_osgi.service.imp.UserServiceImpl"/>
+	  <implementation class="eclipse_osgi.eclipse_osgi.service.imp.UserServiceImpl"/>
 	  <service>
 	   <provide interface="eclipse_osgi.eclipse_osgi.service.UserService"/>
 	  </service>
