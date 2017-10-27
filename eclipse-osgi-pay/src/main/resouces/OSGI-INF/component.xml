@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osgi xmlns="http://www.osgi.org/xmlns/scr/v1.0.0" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:schemaLocation="http://www.osgi.org/xmlns/scr/v1.0.0 http://www.osgi.org/xmlns/scr/v1.0.0/scr.xsd">
+	<!-- <component  name="">
+	  <implementation calss=""></implementation>
+	  <service>
+	   <provide interface=""></provide>
+	  </service>
+	  Reference 依赖的其他 component
+	  <reference name=""  interface=""  target="">
+	  
+	  </reference>
+	</component> -->
+	
+	<component  name="payService">
+	  <implementation class="eclipse_osgi_pay.eclipse_osgi_pay.service.impl.PayServiceImpl"/>
+	  <service>
+	   <provide interface="eclipse_osgi_pay.eclipse_osgi_pay.service.PayService"/>
+	  </service>
+	  <reference bind="userService" cardinality="1..1" interface="eclipse_osgi.eclipse_osgi.service.UserService" name="userService" policy="dynamic"/>  
+	</component>
+   
+</osgi>

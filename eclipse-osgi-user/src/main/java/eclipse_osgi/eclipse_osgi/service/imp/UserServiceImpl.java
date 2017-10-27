@@ -9,5 +9,9 @@ public class UserServiceImpl implements UserService{
 		System.out.println(say);
 		
 	}
+	
+	public void activate(){
+		System.out.println("activate ");
+	}
 
 }

@@ -79,4 +79,35 @@ public class OsgiLuacher {
 		    return urls;
 		    
 	}
+	
+	
+	//Life Cycle of a Framework
+	
+	// init 
+	  //--(1.Start Extension Activators 2.Init Framework Listeners)
+	// Starting the Framework
+	// Stopping a Framework
+	       //--(Stop Extension Activators)
+	
+	
+	//Bundle State
+	
+	//INSTALLED
+	//RESOLVED - resolved the bundle's dependencies as described in the manifest
+	//STARTING -  BundleActivator.start method will be called
+	//ACTIVE  its Bundle Activator start method has been called and returned.
+	//STOPPING -he BundleActivator.stop method has been called but the stop method has not yet returned
+	//UNINSTALLED
+	
+	
+	//Events
+	//BundleEvent -
+	//FrameworkEvent -
+	
+	/*BundleActivator
+	• ServiceFactory
+	• BundleListener, ServiceListener, and FrameworkListener
+	• Framework hook services
+	*/
+	
 }

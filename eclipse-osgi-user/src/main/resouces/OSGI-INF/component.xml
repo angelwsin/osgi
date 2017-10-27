@@ -7,12 +7,13 @@
 	  <service>
 	   <provide interface=""></provide>
 	  </service>
+	  Reference 依赖的其他 component
 	  <reference name=""  interface=""  target="">
 	  
 	  </reference>
 	</component> -->
 	
-	<component  name="userService">
+	<component  name="eclipse_osgi.eclipse_osgi.service.UserService">
 	  <implementation class="eclipse_osgi.eclipse_osgi.service.imp.UserServiceImpl"/>
 	  <service>
 	   <provide interface="eclipse_osgi.eclipse_osgi.service.UserService"/>
