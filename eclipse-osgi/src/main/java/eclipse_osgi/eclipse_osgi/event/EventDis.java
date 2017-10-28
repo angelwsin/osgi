@@ -34,5 +34,9 @@ public class EventDis implements EventDispatcher<Object, Object, StartEvent>{
 	}
 
 	
+	//BundleEvent   SynchronousBundleListener,BundleListener 监听
+	
+ //状态  Bundle中
+	
 
 }

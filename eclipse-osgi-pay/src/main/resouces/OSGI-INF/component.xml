@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<osgi xmlns="http://www.osgi.org/xmlns/scr/v1.0.0" 
+<osgi xmlns="http://www.osgi.org/xmlns/scr/v1.1.0" 
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	  xsi:schemaLocation="http://www.osgi.org/xmlns/scr/v1.0.0 http://www.osgi.org/xmlns/scr/v1.0.0/scr.xsd">
+	  xsi:schemaLocation="http://www.osgi.org/xmlns/scr/v1.1.0 http://www.osgi.org/xmlns/scr/v1.1.0/scr.xsd">
 	<!-- <component  name="">
 	  <implementation calss=""></implementation>
 	  <service>
@@ -12,13 +12,13 @@
 	  
 	  </reference>
 	</component> -->
-	
-	<component  name="payService">
+		<!-- activate，deactivate 方法解析 调用  see ServiceComponent  -->
+	<component  name="eclipse_osgi_pay.eclipse_osgi_pay.service.PayService"  activate="activate" deactivate="deactivate" >
 	  <implementation class="eclipse_osgi_pay.eclipse_osgi_pay.service.impl.PayServiceImpl"/>
 	  <service>
 	   <provide interface="eclipse_osgi_pay.eclipse_osgi_pay.service.PayService"/>
 	  </service>
-	  <reference bind="userService" cardinality="1..1" interface="eclipse_osgi.eclipse_osgi.service.UserService" name="userService" policy="dynamic"/>  
+	  <reference  interface="eclipse_osgi.eclipse_osgi.service.UserService" name="userService" policy="dynamic"  bind="setUserService"/>  
 	</component>
    
 </osgi>

@@ -15,19 +15,19 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
-
+//-agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n
 public class OsgiLuacher {
 	
 	private static String LauncherBundles ="launcher.bundles";
 	private static String Home = System.getProperty("user.dir");
 	
-	//mvn install:install-file -Dfile=E:\equinox-SDK-3.8\plugins\org.eclipse.osgi.services_3.3.100.v20120522-1822.jar -DgroupId=org.eclipse -DartifactId=org.eclipse.osgi.services -Dversion=3.3.100.v20120522-1822 -Dpackaging=jar
-	//mvn install:install-file -Dfile=E:\equinox-SDK-3.8\plugins\org.eclipse.equinox.util_1.0.400.v20120522-2049.jar -DgroupId=org.eclipse.equinox -DartifactId=org.eclipse.equinox.util -Dversion=1.0.400.v20120522-2049 -Dpackaging=jar
-	//mvn install:install-file -Dfile=E:\equinox-SDK-3.8\plugins\org.eclipse.equinox.ds_1.4.0.v20120522-1841.jar -DgroupId=org.eclipse.equinox -DartifactId=org.eclipse.equinox.ds -Dversion=1.4.0.v20120522-1841 -Dpackaging=jar
-	//mvn install:install-file -Dfile=E:\equinox-SDK-3.8\plugins\org.eclipse.equinox.common_3.6.100.v20120522-1841.jar -DgroupId=org.eclipse.equinox -DartifactId=org.eclipse.equinox.common -Dversion=3.6.100.v20120522-1841 -Dpackaging=jar
-	//mvn install:install-file -Dfile=E:\equinox-SDK-3.8\plugins\org.eclipse.equinox.cm_1.0.400.v20120522-1841.jar -DgroupId=org.eclipse.equinox -DartifactId=org.eclipse.equinox.cm -Dversion=1.0.400.v20120522-1841 -Dpackaging=jar
-	//mvn install:install-file -Dfile=E:\equinox-SDK-3.8\plugins\org.eclipse.equinox.app_1.3.100.v20120522-1841.jar -DgroupId=org.eclipse.equinox -DartifactId=org.eclipse.equinox.app -Dversion=1.3.100.v20120522-1841 -Dpackaging=jar
-
+	//mvn install:install-file -Dfile=D:\osgi\plugins\org.eclipse.osgi.services_3.3.100.v20120522-1822.jar -DgroupId=org.eclipse -DartifactId=org.eclipse.osgi.services -Dversion=3.3.100.v20120522-1822 -Dpackaging=jar
+	//mvn install:install-file -Dfile=D:\osgi\plugins\org.eclipse.equinox.util_1.0.400.v20120522-2049.jar -DgroupId=org.eclipse.equinox -DartifactId=org.eclipse.equinox.util -Dversion=1.0.400.v20120522-2049 -Dpackaging=jar
+	//mvn install:install-file -Dfile=D:\osgi\plugins\org.eclipse.equinox.ds_1.4.0.v20120522-1841.jar -DgroupId=org.eclipse.equinox -DartifactId=org.eclipse.equinox.ds -Dversion=1.4.0.v20120522-1841 -Dpackaging=jar
+	//mvn install:install-file -Dfile=D:\osgi\plugins\org.eclipse.equinox.common_3.6.100.v20120522-1841.jar -DgroupId=org.eclipse.equinox -DartifactId=org.eclipse.equinox.common -Dversion=3.6.100.v20120522-1841 -Dpackaging=jar
+	//mvn install:install-file -Dfile=D:\osgi\plugins\org.eclipse.equinox.cm_1.0.400.v20120522-1841.jar -DgroupId=org.eclipse.equinox -DartifactId=org.eclipse.equinox.cm -Dversion=1.0.400.v20120522-1841 -Dpackaging=jar
+	//mvn install:install-file -Dfile=D:\osgi\plugins\org.eclipse.equinox.app_1.3.100.v20120522-1841.jar -DgroupId=org.eclipse.equinox -DartifactId=org.eclipse.equinox.app -Dversion=1.3.100.v20120522-1841 -Dpackaging=jar
+   //mvn install:install-file -Dfile=D:\osgi\plugins\org.eclipse.equinox.registry_3.5.200.v20120522-1841.jar -DgroupId=org.eclipse.equinox -DartifactId=org.eclipse.equinox.registry -Dversion=3.5.200.v20120522-1841 -Dpackaging=jar
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		try( InputStream is = OsgiLuacher.class.getClassLoader().getSystemResourceAsStream("osgi.properties");) {
@@ -44,6 +44,19 @@ public class OsgiLuacher {
 		    	FrameworkFactory frameworkFactory = serviceLoader.iterator().next();
 		    	Framework fw = frameworkFactory.newFramework(config);
 		    	fw.start();
+		    	// 创建框架对象
+		    	//初始化配置 如osgi.configuration.area  等 框架安装位置
+		    	//初始化 BaseAdaptor  框架功能的扩展点 
+		    	   //  BaseAdaptor 通过管理HookRegistry 来完成功能的扩展
+		    	    //initialize the hook configurators        实现 org.eclipse.osgi.baseadaptor.HookRegistry.initialize()
+		    	      // classpath :/hookconfigurators.properties
+		    	     // 框架配置 osgi.hook.configurators.include，osgi.hook.configurators.exclude
+		    	     //HookConfigurator#addHooks(HookRegistry)
+		    	     //初始化storage  
+		    	//启动ConsoleManager 服务     osgi.console
+		       //Start the SystemBundle, launches the framework
+		    // 启动事件服务和监听 org.eclipse.osgi.framework.internal.core.StartLevelManager.initialize()
+		    //启动 begin tracking services 
 		        parseLauncherBundles(config.get(LauncherBundles)).forEach(bundle->{
 		        	try {
 						Bundle bundl = fw.getBundleContext().installBundle(bundle.toExternalForm());
@@ -110,4 +123,8 @@ public class OsgiLuacher {
 	• Framework hook services
 	*/
 	
+	
+	//ServiceEvent 
+	//ServiceTracker 提供线程安全的跟踪
+	//ServiceRegistration  注册 LdapFilter查找
 }

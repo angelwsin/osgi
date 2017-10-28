@@ -1,19 +1,18 @@
 package eclipse_osgi_user.eclipse_osgi_user;
 
-import java.util.Dictionary;
 import java.util.Objects;
 
-import org.eclipse.equinox.internal.ds.SCRManager;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
+import org.osgi.framework.ServiceEvent;
+import org.osgi.framework.ServiceListener;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.SynchronousBundleListener;
-import org.osgi.service.component.ComponentConstants;
 
 import eclipse_osgi.eclipse_osgi.service.UserService;
 
-public class Activator implements BundleActivator,SynchronousBundleListener{
+public class Activator implements BundleActivator,SynchronousBundleListener,ServiceListener{
 	
 	
 	BundleContext context ;
@@ -24,6 +23,7 @@ public class Activator implements BundleActivator,SynchronousBundleListener{
 		this.context = context;
 		
 		context.addBundleListener(this);
+		context.addServiceListener(this);
 	
 		
 	}
@@ -47,12 +47,18 @@ public class Activator implements BundleActivator,SynchronousBundleListener{
 			ServiceReference<UserService> ref = context.getServiceReference(UserService.class);
 			if(!Objects.isNull(ref)){
 				UserService o =  context.getService(ref);
-				  o.say("hello");
+				  o.say("hello evnent");
 			}
 				context.removeBundleListener(this);
 			}
 		
 		}
+
+	@Override
+	public void serviceChanged(ServiceEvent event) {
+		 System.out.println(event.getClass());
+		
+	}
 		
 	
 

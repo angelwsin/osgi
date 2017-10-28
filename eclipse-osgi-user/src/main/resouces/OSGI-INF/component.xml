@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<osgi xmlns="http://www.osgi.org/xmlns/scr/v1.0.0" 
+<osgi xmlns="http://www.osgi.org/xmlns/scr/v1.1.0" 
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	  xsi:schemaLocation="http://www.osgi.org/xmlns/scr/v1.0.0 http://www.osgi.org/xmlns/scr/v1.0.0/scr.xsd">
+	  xsi:schemaLocation="http://www.osgi.org/xmlns/scr/v1.1.0 http://www.osgi.org/xmlns/scr/v1.1.0/scr.xsd">
 	<!-- <component  name="">
 	  <implementation calss=""></implementation>
 	  <service>
@@ -13,7 +13,8 @@
 	  </reference>
 	</component> -->
 	
-	<component  name="eclipse_osgi.eclipse_osgi.service.UserService">
+
+	<component  name="eclipse_osgi.eclipse_osgi.service.UserService"  >
 	  <implementation class="eclipse_osgi.eclipse_osgi.service.imp.UserServiceImpl"/>
 	  <service>
 	   <provide interface="eclipse_osgi.eclipse_osgi.service.UserService"/>

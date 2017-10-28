@@ -33,6 +33,12 @@
   <version>0.0.1-SNAPSHOT</version>
   <scope>test</scope>
   </dependency>
+  <dependency>
+    <groupId>org.eclipse</groupId>
+    <artifactId>org.eclipse.osgi.services</artifactId>
+    <version>3.3.100.v20120522-1822</version>
+    <scope>test</scope>
+</dependency>
   </dependencies>
   <build>
   <plugins>
@@ -89,7 +95,7 @@
                         <Service-Component>OSGI-INF/component.xml</Service-Component>  
                         <Bundle-Activator>eclipse_osgi_pay.eclipse_osgi_pay.Activator</Bundle-Activator>  
                         <!-- <Export-Package>tutorial.example1.api</Export-Package>   -->
-                        <Import-Package>org.osgi.framework,eclipse_osgi.eclipse_osgi.service</Import-Package>
+                        <Import-Package>org.osgi.framework,eclipse_osgi.eclipse_osgi.service,org.osgi.service.component</Import-Package>
                         </manifestEntries>
                     </archive>
                 </configuration>
