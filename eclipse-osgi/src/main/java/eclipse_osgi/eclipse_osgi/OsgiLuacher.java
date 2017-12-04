@@ -15,7 +15,11 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
+import org.osgi.framework.wiring.BundleWire;
+import org.osgi.framework.wiring.BundleWiring;
 //-agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n
+//org.osgi.framework.Constants
+
 public class OsgiLuacher {
 	
 	private static String LauncherBundles ="launcher.bundles";
@@ -60,7 +64,12 @@ public class OsgiLuacher {
 		        parseLauncherBundles(config.get(LauncherBundles)).forEach(bundle->{
 		        	try {
 						Bundle bundl = fw.getBundleContext().installBundle(bundle.toExternalForm());
+						
 						bundl.start();
+						BundleWiring wi = bundl.adapt(BundleWiring.class);
+						if(wi!=null){
+							System.out.println(wi.getRequirements("osgi.wiring.package"));
+						}
 					} catch (BundleException   e) {
 						e.printStackTrace();
 					}
